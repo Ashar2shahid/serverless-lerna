@@ -11,7 +11,7 @@ yarn run build
 
 # Run the parent package...
 yarn run start
-# ...which will print 42
+# ...which will print 42, placeholder-value
 ```
 
 ## Plain deployment
@@ -28,7 +28,7 @@ yarn run sls:deploy:plain
 
 # Invoke the function
 yarn run sls:invoke:plain
-# ...which will print 42
+# ...which will print 42, placeholder-value
 
 # Remove the function
 yarn run sls:remove:plain
@@ -37,7 +37,8 @@ yarn run sls:remove:plain
 ## Deploy with serverless-webpack
 
 ```sh
-# Note that we don't need to build
+# Build the packages
+yarn run build
 
 cd packages/parent
 # Package the function
@@ -59,7 +60,7 @@ yarn run sls:deploy:webpack
 
 # Invoke the function
 yarn run sls:invoke:webpack
-# ...which will print 42
+# ...which will print 42, placeholder-value
 
 # Remove the function
 yarn run sls:remove:webpack
