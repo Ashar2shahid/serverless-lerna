@@ -1,0 +1,14 @@
+{
+  "name": "serverless-lerna",
+  "scripts": {
+    "bootstrap": "yarn install && lerna bootstrap",
+    "build": "lerna run build",
+    "start": "(cd packages/parent && yarn run start)"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "dependencies": {
+    "typescript": "^4.2.3"
+  }
+}

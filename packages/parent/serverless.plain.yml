@@ -1,0 +1,8 @@
+service: serverless-lerna-plain
+
+provider:
+  name: aws
+  
+functions:
+  test:
+    handler: ./dist/index.handler

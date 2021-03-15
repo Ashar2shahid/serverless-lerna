@@ -1,0 +1,23 @@
+{
+  "name": "@serverless-lerna/parent",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "sls:deploy:plain": "serverless deploy --config serverless.plain.yml",
+    "sls:invoke:plain": "serverless invoke --config serverless.plain.yml --function test",
+    "sls:remove:plain": "serverless remove --config serverless.plain.yml",
+    "sls:package:webpack": "serverless package --config serverless.webpack.yml",
+    "sls:deploy:webpack": "serverless deploy --config serverless.webpack.yml --package .serverless",
+    "sls:invoke:webpack": "serverless invoke --config serverless.webpack.yml --function test",
+    "sls:remove:webpack": "serverless remove --config serverless.webpack.yml"
+  },
+  "dependencies": {
+    "@serverless-lerna/child": "^1.0.0"
+  },
+  "devDependencies": {
+    "serverless": "^2.29.0",
+    "serverless-webpack": "^5.3.5",
+    "webpack": "^5.25.1"
+  }
+}

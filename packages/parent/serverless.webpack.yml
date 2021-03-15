@@ -1,0 +1,11 @@
+service: serverless-lerna-webpack
+
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+
+functions:
+  test:
+    handler: ./dist/index.handler

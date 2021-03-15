@@ -1,0 +1,12 @@
+{
+  "name": "@serverless-lerna/child",
+  "version": "1.0.0",
+  "main": "dist/index",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  }
+}
