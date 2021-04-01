@@ -9,6 +9,7 @@
     "sls:remove:plain": "serverless remove --config serverless.plain.yml",
     "sls:package:webpack": "serverless package --config serverless.webpack.yml",
     "sls:deploy:webpack": "serverless deploy --config serverless.webpack.yml --package .serverless",
+    "sls:deploy:firebase:webpack": "serverless deploy --config serverless.webpack.gcp.yml",
     "sls:invoke:webpack": "serverless invoke --config serverless.webpack.yml --function test",
     "sls:remove:webpack": "serverless remove --config serverless.webpack.yml"
   },
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "serverless": "^2.29.0",
+    "serverless-firebase-functions": "^0.4.2",
     "serverless-webpack": "^5.3.5",
     "webpack": "^5.25.1"
   }

@@ -65,3 +65,31 @@ yarn run sls:invoke:webpack
 # Remove the function
 yarn run sls:remove:webpack
 ```
+
+
+## Deploy with serverless-webpack to Firebase 
+
+install firebase globally
+
+```
+npm i -g firebase
+```
+
+Update projectID and token in `serverless.webpack.gcp.yml`
+
+```sh
+# Build the packages
+yarn run build
+
+cd packages/parent
+
+# Deploy the function
+yarn run sls:deploy:firebase:webpack
+
+# Invoke the function
+curl https://<region>-<projectID>.cloudfunctions.net/<functionName>
+# ...which will print 42, placeholder-value
+
+# Remove the function
+firebase --project <projectID> functions:delete <functionName>
+```
