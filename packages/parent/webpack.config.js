@@ -4,7 +4,7 @@ const slsw = require("serverless-webpack");
 module.exports = {
   devtool: "source-map",
   entry: slsw.lib.entries,
-  //externals: './config.json',
+  externals: './config.json',
   mode: 'production',
   output: {
     filename: '[name].js',

@@ -44,23 +44,25 @@ cd packages/parent
 # Package the function
 yarn run sls:package:webpack
 
-# TODO: Insert the deploy-time-config.json to the package
-# Also uncomment the externals line in webpack.config.js
-# At the moment this fails because the Serverless package hash cannot be validated
-# after config.json is added.
-# unzip .serverless/serverless-lerna-webpack.zip -d .serverless/serverless-lerna-webpack
-# cp deploy-time-config.json .serverless/serverless-lerna-webpack/dist/config.json
-# cd .serverless/serverless-lerna-webpack
-# zip -r ../serverless-lerna-webpack.zip .
-# cd ../..
-# rm -r .serverless/serverless-lerna-webpack
+# Insert the deploy-time-config.json to the package
+unzip .serverless/serverless-lerna-webpack.zip -d .serverless/serverless-lerna-webpack
+cp deploy-time-config.json .serverless/serverless-lerna-webpack/dist/config.json
+cd .serverless/serverless-lerna-webpack
+zip -r ../serverless-lerna-webpack.zip .
+cd ../..
+rm -r .serverless/serverless-lerna-webpack
+# Update the package hash
+# https://github.com/serverless/serverless/issues/3696#issuecomment-420329192
+sha=$(openssl dgst -sha256 -binary .serverless/serverless-lerna-webpack.zip | openssl enc -base64)
+echo CodeSHA256 is ${sha}
+sed -i "s/\"CodeSha256\": \".*\"/\"CodeSha256\": \"${sha}\"/g" .serverless/*.json
 
 # Deploy the function
 yarn run sls:deploy:webpack
 
 # Invoke the function
 yarn run sls:invoke:webpack
-# ...which will print 42, placeholder-value
+# ...which will print 42, deploy-time-value
 
 # Remove the function
 yarn run sls:remove:webpack
