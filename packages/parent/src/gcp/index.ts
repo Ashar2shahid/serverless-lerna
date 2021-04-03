@@ -1,5 +1,5 @@
 import * as child from '@serverless-lerna/child';
-import * as config from '../config.json';
+import * as config from './config.json';
 'use strict';
 
 

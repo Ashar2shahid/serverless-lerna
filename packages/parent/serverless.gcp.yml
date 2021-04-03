@@ -1,0 +1,18 @@
+service: serverless-lerna-gcp
+
+plugins:
+  - serverless-google-cloudfunctions
+
+provider:
+  name: google
+  runtime: nodejs10
+  project: api3-307502
+  credentials: ~/.gcloud/keyfile.json
+  allowUnauthenticated: true
+
+ 
+functions:
+  test:
+    handler: handler
+    events:
+      - http: path

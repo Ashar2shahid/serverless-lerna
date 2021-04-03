@@ -69,15 +69,10 @@ yarn run sls:remove:webpack
 ```
 
 
-## Deploy with serverless-webpack to Firebase 
+## Deploy to GCP Cloud Functions 
 
-install firebase globally
+Create keyfile.json using the [following](https://www.serverless.com/framework/docs/providers/google/guide/credentials/) (Note: you also need to add IAM Security Admin in roles otherwise the deployed function will not be public) .  
 
-```
-npm i -g firebase
-```
-
-Update projectID and token in `serverless.webpack.gcp.yml`
 
 ```sh
 # Build the packages
@@ -85,13 +80,24 @@ yarn run build
 
 cd packages/parent
 
-# Deploy the function
-yarn run sls:deploy:firebase:webpack
+# Package the function to .webpack
+npx webpack --config webpack-gcp.config.js
 
-# Invoke the function
-curl https://<region>-<projectID>.cloudfunctions.net/<functionName>
-# ...which will print 42, placeholder-value
+# Change the deploy time config.json
+cp deploy-time-config.json .webpack/config.json
+
+# Copy over the serverless deployment yml
+cp serverless.gcp.yml .webpack/
+cd .webpack/
+
+# Deploy the function
+serverless deploy --config serverless.gcp.yml
+
+
+# invoke the function
+curl <deployed-function-URL>
+# ...which will print 42, deploy-time-value
 
 # Remove the function
-firebase --project <projectID> functions:delete <functionName>
+serverless remove --config serverless.gcp.yml
 ```
